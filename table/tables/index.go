@@ -41,6 +41,9 @@ func EncodeHandle(h int64) []byte {
 
 // DecodeHandle decodes handle in data.
 func DecodeHandle(data []byte) (int64, error) {
+	if len(data) < 8 {
+		return 0, nil
+	}
 	return int64(binary.BigEndian.Uint64(data)), nil
 }
 
