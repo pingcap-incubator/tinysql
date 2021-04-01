@@ -233,7 +233,7 @@ func DecodeTableID(key kv.Key) int64 {
 
 // DecodeRowKey decodes the key and gets the handle.
 func DecodeRowKey(key kv.Key) (int64, error) {
-	if len(key) != RecordRowKeyLen || !hasTablePrefix(key) || !hasRecordPrefixSep(key[prefixLen-2:]) {
+	if len(key) != RecordRowKeyLen || !hasTablePrefix(key) || !hasRecordPrefixSep(key[prefixLen-recordPrefixSepLength:]) {
 		return 0, errInvalidKey.GenWithStack("invalid key - %q", key)
 	}
 	u := binary.BigEndian.Uint64(key[prefixLen:])
@@ -445,7 +445,6 @@ func DecodeIndexHandle(key, value []byte, colsLen int, pkTp *types.FieldType) (i
 			return 0, errors.Trace(err)
 		}
 		return d.GetInt64(), nil
-
 	} else if len(value) >= 8 {
 		return DecodeIndexValueAsHandle(value)
 	}
