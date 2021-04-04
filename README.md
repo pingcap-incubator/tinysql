@@ -55,7 +55,7 @@ mkdir -p data
 
 ## Contributing
 
-Contributions are welcomed and greatly appreciated. See [CONTRIBUTING.md](https://github.com/pingcap/community/blob/master/CONTRIBUTING.md) for details on submitting patches and the contribution workflow.
+Contributions are welcomed and greatly appreciated. See [Contribution Guide](https://github.com/pingcap/community/tree/master/contributors) for details on submitting patches and the contribution workflow.
 
 ## License
 
