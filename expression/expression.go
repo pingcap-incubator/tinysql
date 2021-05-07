@@ -502,23 +502,24 @@ func TableInfo2SchemaAndNames(ctx sessionctx.Context, dbName model.CIStr, tbl *m
 func ColumnInfos2ColumnsAndNames(ctx sessionctx.Context, dbName, tblName model.CIStr, colInfos []*model.ColumnInfo) ([]*Column, types.NameSlice) {
 	columns := make([]*Column, 0, len(colInfos))
 	names := make([]*types.FieldName, 0, len(colInfos))
-	for i, col := range colInfos {
+	for _, col := range colInfos {
 		if col.State != model.StatePublic {
 			continue
 		}
-		names = append(names, &types.FieldName{
+		tmp := &types.FieldName{
 			OrigTblName: tblName,
 			OrigColName: col.Name,
 			DBName:      dbName,
 			TblName:     tblName,
 			ColName:     col.Name,
-		})
+		}
+		names = append(names, tmp)
 		newCol := &Column{
 			RetType:  &col.FieldType,
 			ID:       col.ID,
 			UniqueID: ctx.GetSessionVars().AllocPlanColumnID(),
 			Index:    col.Offset,
-			OrigName: names[i].String(),
+			OrigName: tmp.String(),
 		}
 		columns = append(columns, newCol)
 	}
