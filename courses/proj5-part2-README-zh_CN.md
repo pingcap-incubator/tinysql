@@ -1,5 +1,5 @@
 # Hash Join
--
+
 ## 概览
 
 在这一小节我们将学习 Hash Join 及其实现，并且从这一小节开始我们将接触并发计算
@@ -82,7 +82,7 @@ Outer Fetcher 是一个后台 goroutine，他的主要计算逻辑在 fetchOuter
 
 ## 作业
 
-实现 [runJoinWorker](https://github.com/pingcap-incubator/tinysql/blob/hash-join/executor/join.go#L243) 以及 [fetchAndBuildHashTable](https://github.com/pingcap-incubator/tinysql/blob/hash-join/executor/join.go#L148)。
+实现 [runJoinWorker](https://github.com/tidb-incubator/tinysql/blob/course/executor/join.go#L243) 以及 [fetchAndBuildHashTable](https://github.com/tidb-incubator/tinysql/blob/course/executor/join.go#L148)。
 
 ## 测试
 
